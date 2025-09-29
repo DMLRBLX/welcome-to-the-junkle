@@ -14,31 +14,32 @@ public class PlayerController : MonoBehaviour
     // - This script uses a CharacterController to move. Make sure the GameObject has one.
     // - Jump is provided as a stub `OnJump` event for later implementation.
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    [SerializeField] bool arduinoPlayer = false;
+    [SerializeField] float moveSpeed = 5f;
     public float gravity = -9.81f;
     [Tooltip("Additional constant downward acceleration to ensure player falls off edges.")]
-    public float downwardForce = -2f;
-    public float rotationSmoothTime = 0.1f;
-    public float jumpForce = 5f;
+    [SerializeField] float downwardForce = -2f;
+    [SerializeField] float rotationSmoothTime = 0.1f;
+    [SerializeField] float jumpForce = 5f;
 
     [Header("References")]
-    public Transform cameraTransform;
+    [SerializeField] Transform cameraTransform;
 
     [Header("Ground Check")]
-    public Vector3 groundCheckOffset = new Vector3(0f, -0.9f, 0f);
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer = ~0; // default to everything
+    [SerializeField] Vector3 groundCheckOffset = new Vector3(0f, -0.9f, 0f);
+    [SerializeField] float groundCheckRadius = 0.2f;
+    [SerializeField] LayerMask groundLayer = ~0; // default to everything
 
     [Header("Gizmos")]
-    public bool drawGroundGizmo = true;
-    public Color groundGizmoColor = Color.yellow;
-    public bool wireframeGizmo = true;
+    [SerializeField] bool drawGroundGizmo = true;
+    [SerializeField] Color groundGizmoColor = Color.yellow;
+    [SerializeField] bool wireframeGizmo = true;
 
     CharacterController cc;
     Vector3 velocity;
     float currentVelocityY;
     float rotationVelocity;
-    Vector2 moveInput = Vector2.zero;
+    public Vector2 moveInput = Vector2.zero;
     bool isGrounded = false;
 
     void Awake()
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         // Keep raw 2D input (typically from a Vector2 action)
-        if (context.performed || context.canceled)
+        if ((context.performed || context.canceled) && !arduinoPlayer)
         {
             moveInput = context.ReadValue<Vector2>();
         }
@@ -67,7 +68,15 @@ public class PlayerController : MonoBehaviour
     // Optional example: jump callback (not implemented as vertical physics here)
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded())
+        if (context.performed)
+        {
+            Jump();
+        }
+    }
+
+    public void Jump()
+    {
+        if (IsGrounded())
         {
             // Set upward velocity immediately using combined gravity (gravity + downwardForce)
             float effectiveGravity = gravity + downwardForce;
@@ -110,6 +119,10 @@ public class PlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        }
+        else
+        {
+            print("nope");
         }
 
         Vector3 total = move + new Vector3(0f, velocity.y, 0f);
