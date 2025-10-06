@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,8 +23,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSmoothTime = 0.1f;
     [SerializeField] float jumpForce = 5f;
 
+    // Stored camera input (can be set from external sources like Arduino)
+    Vector2 externalCameraInput = Vector2.zero;
+    // Cinemachine override state
+    CinemachineCore.AxisInputDelegate previousCinemachineGetAxis = null;
+    bool cinematineInputOverridden = false;
+
     [Header("References")]
     [SerializeField] Transform cameraTransform;
+    [SerializeField] CinemachineInputAxisController ciac;
 
     [Header("Ground Check")]
     [SerializeField] Vector3 groundCheckOffset = new Vector3(0f, -0.9f, 0f);
@@ -119,10 +127,6 @@ public class PlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(move.x, move.z) * Mathf.Rad2Deg;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref rotationVelocity, rotationSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-        }
-        else
-        {
-            print("nope");
         }
 
         Vector3 total = move + new Vector3(0f, velocity.y, 0f);
