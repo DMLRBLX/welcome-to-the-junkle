@@ -1268,7 +1268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e73d7c0d30004d95192a711c0d46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comPort: 
   playerController: {fileID: 2137852368}
+  cameraController: {fileID: 0}
+  forwardToCamera: 1
+  potMax: 1023
   offset: {x: 0, y: 0}
 --- !u!1 &913191904
 GameObject:
@@ -3681,7 +3685,7 @@ MonoBehaviour:
   messChance: 0.4
   messRadius: 2
   messPrefabs:
-  - {fileID: 2268362111605016185, guid: cc21c63813d05bc44ae8e1289f9cc09b, type: 3}
+  - {fileID: 6804792615142398942, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
   minMessCount: 1
   maxMessCount: 3
   messSpreadRadius: 1.5
@@ -3823,7 +3827,7 @@ MonoBehaviour:
   messChance: 0.4
   messRadius: 2
   messPrefabs:
-  - {fileID: 2268362111605016185, guid: cc21c63813d05bc44ae8e1289f9cc09b, type: 3}
+  - {fileID: 6804792615142398942, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
   minMessCount: 1
   maxMessCount: 3
   messSpreadRadius: 1.5
@@ -3891,6 +3895,7 @@ MonoBehaviour:
   rotationSmoothTime: 0.1
   jumpForce: 2
   cameraTransform: {fileID: 522855905}
+  ciac: {fileID: 0}
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
   groundCheckRadius: 0.2
   groundLayer:
@@ -5061,6 +5066,7 @@ MonoBehaviour:
   rotationSmoothTime: 0.1
   jumpForce: 2
   cameraTransform: {fileID: 1899744716}
+  ciac: {fileID: 0}
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
   groundCheckRadius: 0.2
   groundLayer:
@@ -5188,6 +5194,63 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!1001 &2103497432775178807
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.733468
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.084865786
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.92353964
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592430750843351202, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6804792615142398942, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
+      propertyPath: m_Name
+      value: Mess1 (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2aff008b620cbe54db1ddcd38f76438f, type: 3}
 --- !u!1001 &5601839663200712353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5351,3 +5414,4 @@ SceneRoots:
   - {fileID: 812606256}
   - {fileID: 1611169262}
   - {fileID: 1261870066}
+  - {fileID: 2103497432775178807}

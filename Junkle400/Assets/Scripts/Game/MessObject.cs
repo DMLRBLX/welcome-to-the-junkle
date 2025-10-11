@@ -1,15 +1,20 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MessObject : MonoBehaviour
 {
     [Header("Cleanup Settings")]
     [SerializeField] private float cleanupTime = 2f; // Time to clean up mess
     [SerializeField] private string playerTag = "Player";
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
+    [SerializeField] private KeyCode interactKey = KeyCode.E; 
     [SerializeField] private float interactRange = 2f;
+    [Tooltip("Optional: assign an Input Action (new Input System) for controller input, e.g. PS5 X/Cross button")]
+    [SerializeField] private InputActionReference interactAction; 
+    private InputAction instantiatedInteractAction;
     
     [Header("Visual Feedback")]
-    [SerializeField] private GameObject cleanupEffect; // Optional particle effect
+    [Tooltip("Optional: assign a prefab GameObject for the cleanup effect (bubble prefab). The script will try to find and play a ParticleSystem on the instantiated prefab.")]
+    [SerializeField] private GameObject cleanupEffectPrefab;
     [SerializeField] private AudioClip cleanupSound;
     [SerializeField] private Canvas interactPrompt; // Optional UI prompt
     
@@ -20,29 +25,59 @@ public class MessObject : MonoBehaviour
     
     private void Awake()
     {
-        // Get or create audio source
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null && cleanupSound != null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
         
-        // Hide interact prompt initially
         if (interactPrompt != null)
         {
             interactPrompt.gameObject.SetActive(false);
         }
     }
-    
-    private void Update()
+
+    private void OnEnable()
     {
-        // Check for player input if player is in range
-        if (playerInRange && !isBeingCleaned && Input.GetKeyDown(interactKey))
+        if (interactAction != null && interactAction.action != null)
+        {
+            instantiatedInteractAction = interactAction.action;
+            instantiatedInteractAction.started += OnInteractStarted;
+            instantiatedInteractAction.Enable();
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (instantiatedInteractAction != null)
+        {
+            instantiatedInteractAction.started -= OnInteractStarted;
+            instantiatedInteractAction.Disable();
+            instantiatedInteractAction = null;
+        }
+    }
+
+    private void OnInteractStarted(InputAction.CallbackContext ctx)
+    {
+  
+        if (!playerInRange && currentPlayer == null)
+        {
+            TryFindPlayerNearby();
+        }
+
+        if (playerInRange && !isBeingCleaned)
         {
             StartCleanup();
         }
-        
-        // Check if player is still in range
+    }
+    
+    private void Update()
+    {
+        if (interactAction == null || interactAction.action == null)
+        {
+            return;
+        }
+
         if (currentPlayer != null)
         {
             float distance = Vector3.Distance(transform.position, currentPlayer.transform.position);
@@ -105,19 +140,35 @@ public class MessObject : MonoBehaviour
         
         Debug.Log($"Cleaning up {gameObject.name}...");
         
-        // Hide interact prompt during cleanup
         if (interactPrompt != null)
         {
             interactPrompt.gameObject.SetActive(false);
         }
         
-        // Start cleanup process
+        if (cleanupEffectPrefab != null)
+        {
+            GameObject fx = Instantiate(cleanupEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(fx, Mathf.Max(2f, cleanupTime)); // keep effect at least 2s or until cleanupTime
+        }
+
         Invoke(nameof(FinishCleanup), cleanupTime);
-        
-        // Play cleanup sound
+
         if (audioSource != null && cleanupSound != null)
         {
             audioSource.PlayOneShot(cleanupSound);
+        }
+    }
+
+    private void TryFindPlayerNearby()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, interactRange);
+        foreach (var c in cols)
+        {
+            if (c.CompareTag(playerTag))
+            {
+                OnPlayerEntered(c.gameObject);
+                return;
+            }
         }
     }
     
@@ -125,11 +176,7 @@ public class MessObject : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} has been cleaned up!");
         
-        // Spawn cleanup effect
-        if (cleanupEffect != null)
-        {
-            Instantiate(cleanupEffect, transform.position, transform.rotation);
-        }
+       
         
         // Award points or trigger cleanup event
         OnMessCleaned();
@@ -140,11 +187,9 @@ public class MessObject : MonoBehaviour
     
     private void OnMessCleaned()
     {
-        // You can expand this to:
         // - Award points to player
         // - Update game manager
-        // - Trigger achievements
-        // - Play additional effects
+ 
         
         // Example: Find game manager and notify
         GameObject gameManager = GameObject.Find("GameManager");
@@ -154,7 +199,6 @@ public class MessObject : MonoBehaviour
         }
     }
     
-    // Public method for other scripts to clean this mess (e.g., vacuum cleaner)
     public void CleanInstantly()
     {
         if (isBeingCleaned) return;
