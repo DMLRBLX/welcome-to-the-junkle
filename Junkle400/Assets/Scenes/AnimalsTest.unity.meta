@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:Junkle400/Assets/Scenes/AnimalsTest.unity.meta
 guid: e4aba7b7a2335b842b497cf67a024704
 DefaultImporter:
@@ -6,6 +7,10 @@ DefaultImporter:
 guid: 70992d6a2a2299c4ca28aa3c663e0969
 NativeFormatImporter:
 >>>>>>>> Stashed changes:Junkle400/Assets/Scenes/AnimalsTest new/NavMesh-Environment.asset.meta
+=======
+guid: e4aba7b7a2335b842b497cf67a024704
+DefaultImporter:
+>>>>>>> Stashed changes
   externalObjects: {}
   userData: 
   assetBundleName: 

@@ -499,6 +499,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -523,6 +524,8 @@ MonoBehaviour:
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
 =======
+=======
+>>>>>>> Stashed changes
   m_Script: {fileID: 11500000, guid: 395151faf439d974fa6742ddb68b1739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -535,6 +538,9 @@ MonoBehaviour:
   rotateTargetYaw: 1
   useArduinoInput: 0
   lookAction: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &900336530
 GameObject:
@@ -580,6 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e73d7c0d30004d95192a711c0d46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   playerController: {fileID: 2137852368}
   offset: {x: 0, y: 0}
@@ -830,12 +837,17 @@ MonoBehaviour:
       Anamorphism: 0
   BlendHint: 0
 =======
+=======
+>>>>>>> Stashed changes
   comPort: COM7
   playerController: {fileID: 2137852368}
   cameraController: {fileID: 1899744721}
   forwardToCamera: 1
   potMax: 1023
   offset: {x: 0, y: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1061327397
 GameObject:
@@ -1199,7 +1211,10 @@ Transform:
   - {fileID: 1851859818}
   - {fileID: 522855905}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 990709985}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_Father: {fileID: 0}
@@ -1467,6 +1482,7 @@ PrefabInstance:
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbdd7dd9a6fd1a743a665b79dad423c3, type: 3}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1777636473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1731,8 @@ MonoBehaviour:
   BlendHint: 0
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1837727161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
@@ -1837,6 +1855,10 @@ MonoBehaviour:
   jumpForce: 2
   cameraTransform: {fileID: 522855905}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  ciac: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   ciac: {fileID: 0}
 >>>>>>> Stashed changes
@@ -2013,8 +2035,11 @@ MonoBehaviour:
     m_ActionName: 'Player/Attack[/DualShock4GamepadHID/buttonWest,/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_Calls: []
 =======
+=======
+>>>>>>> Stashed changes
       m_Calls:
       - m_Target: {fileID: 522855907}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
@@ -2028,6 +2053,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     m_ActionId: 1ee0c518-f93f-4233-8b23-9e47a4431a6a
     m_ActionName: 'CC/Look[/DualShock4GamepadHID/rightStick]'
@@ -2085,7 +2113,11 @@ GameObject:
   - component: {fileID: 1899744719}
   - component: {fileID: 1899744718}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1899744717}
+=======
+  - component: {fileID: 1899744721}
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 1899744721}
 >>>>>>> Stashed changes
@@ -2111,6 +2143,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2121895775}
   m_LocalEulerAnglesHint: {x: 21.224, y: 0, z: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 --- !u!114 &1899744717
 MonoBehaviour:
@@ -2144,6 +2177,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!114 &1899744718
@@ -2198,7 +2233,11 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899744715}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_Enabled: 1
+=======
+  m_Enabled: 0
+>>>>>>> Stashed changes
 =======
   m_Enabled: 0
 >>>>>>> Stashed changes
@@ -2254,7 +2293,10 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1899744721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2276,6 +2318,9 @@ MonoBehaviour:
   rotateTargetYaw: 1
   useArduinoInput: 1
   lookAction: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1001 &2085987777
 PrefabInstance:
@@ -2378,7 +2423,10 @@ Transform:
   - {fileID: 2137852367}
   - {fileID: 1899744716}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 1777636474}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_Father: {fileID: 0}
@@ -2574,6 +2622,10 @@ MonoBehaviour:
   jumpForce: 2
   cameraTransform: {fileID: 1899744716}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  ciac: {fileID: 0}
+>>>>>>> Stashed changes
 =======
   ciac: {fileID: 0}
 >>>>>>> Stashed changes
