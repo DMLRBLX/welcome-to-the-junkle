@@ -498,6 +498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 522855902}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< Updated upstream
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -521,6 +522,20 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+=======
+  m_Script: {fileID: 11500000, guid: 395151faf439d974fa6742ddb68b1739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1291230574}
+  headOffset: {x: 0, y: 0, z: 0}
+  sensitivity: 1
+  smoothing: 0.1
+  minPitch: -30
+  maxPitch: 60
+  rotateTargetYaw: 1
+  useArduinoInput: 0
+  lookAction: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1 &900336530
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e73d7c0d30004d95192a711c0d46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   playerController: {fileID: 2137852368}
   offset: {x: 0, y: 0}
 --- !u!1 &990709984
@@ -813,6 +829,14 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+=======
+  comPort: COM7
+  playerController: {fileID: 2137852368}
+  cameraController: {fileID: 1899744721}
+  forwardToCamera: 1
+  potMax: 1023
+  offset: {x: 0, y: 0}
+>>>>>>> Stashed changes
 --- !u!1 &1061327397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1174,7 +1198,10 @@ Transform:
   m_Children:
   - {fileID: 1851859818}
   - {fileID: 522855905}
+<<<<<<< Updated upstream
   - {fileID: 990709985}
+=======
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1434551495
@@ -1439,6 +1466,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbdd7dd9a6fd1a743a665b79dad423c3, type: 3}
+<<<<<<< Updated upstream
 --- !u!1 &1777636473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,6 +1713,8 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+=======
+>>>>>>> Stashed changes
 --- !u!1 &1837727161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
@@ -1806,6 +1836,10 @@ MonoBehaviour:
   rotationSmoothTime: 0.1
   jumpForce: 2
   cameraTransform: {fileID: 522855905}
+<<<<<<< Updated upstream
+=======
+  ciac: {fileID: 0}
+>>>>>>> Stashed changes
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
   groundCheckRadius: 0.2
   groundLayer:
@@ -1978,7 +2012,23 @@ MonoBehaviour:
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/DualShock4GamepadHID/buttonWest,/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:
+<<<<<<< Updated upstream
       m_Calls: []
+=======
+      m_Calls:
+      - m_Target: {fileID: 522855907}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+>>>>>>> Stashed changes
     m_ActionId: 1ee0c518-f93f-4233-8b23-9e47a4431a6a
     m_ActionName: 'CC/Look[/DualShock4GamepadHID/rightStick]'
   - m_PersistentCalls:
@@ -2034,7 +2084,11 @@ GameObject:
   - component: {fileID: 1899744720}
   - component: {fileID: 1899744719}
   - component: {fileID: 1899744718}
+<<<<<<< Updated upstream
   - component: {fileID: 1899744717}
+=======
+  - component: {fileID: 1899744721}
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -2057,6 +2111,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2121895775}
   m_LocalEulerAnglesHint: {x: 21.224, y: 0, z: 0}
+<<<<<<< Updated upstream
 --- !u!114 &1899744717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2089,6 +2144,8 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!114 &1899744718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2140,7 +2197,11 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899744715}
+<<<<<<< Updated upstream
   m_Enabled: 1
+=======
+  m_Enabled: 0
+>>>>>>> Stashed changes
 --- !u!20 &1899744720
 Camera:
   m_ObjectHideFlags: 0
@@ -2192,6 +2253,30 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+<<<<<<< Updated upstream
+=======
+--- !u!114 &1899744721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899744715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395151faf439d974fa6742ddb68b1739, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 2137272504}
+  headOffset: {x: 0, y: 0, z: 0}
+  sensitivity: 5
+  smoothing: 0.1
+  minPitch: -30
+  maxPitch: 60
+  rotateTargetYaw: 1
+  useArduinoInput: 1
+  lookAction: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1001 &2085987777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2292,7 +2377,10 @@ Transform:
   m_Children:
   - {fileID: 2137852367}
   - {fileID: 1899744716}
+<<<<<<< Updated upstream
   - {fileID: 1777636474}
+=======
+>>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137272503
@@ -2485,6 +2573,10 @@ MonoBehaviour:
   rotationSmoothTime: 0.1
   jumpForce: 2
   cameraTransform: {fileID: 1899744716}
+<<<<<<< Updated upstream
+=======
+  ciac: {fileID: 0}
+>>>>>>> Stashed changes
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
   groundCheckRadius: 0.2
   groundLayer:
