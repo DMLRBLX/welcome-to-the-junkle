@@ -127,6 +127,7 @@ MonoBehaviour:
   playerTag: Player
   interactKey: 273
   interactRange: 9
+  interactAction: {fileID: 7943617101843388942, guid: e712b741a329662499c67b0590477437, type: 3}
   cleanupEffect: {fileID: 0}
-  cleanupSound: {fileID: 0}
+  cleanupSound: {fileID: 8300000, guid: 6838bfceb00583c4a96ca3bf542dc6f4, type: 3}
   interactPrompt: {fileID: 0}
