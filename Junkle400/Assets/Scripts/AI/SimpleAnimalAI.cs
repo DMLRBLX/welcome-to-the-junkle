@@ -220,7 +220,7 @@ public class SimpleAnimalAI : MonoBehaviour
             }
             
             Quaternion prefabRotation = messPrefab.transform.rotation;
-            Quaternion correctRotation = Quaternion.Euler(90, prefabRotation.eulerAngles.y, prefabRotation.eulerAngles.z);
+            Quaternion correctRotation = Quaternion.Euler(0, prefabRotation.eulerAngles.y, prefabRotation.eulerAngles.z);
             GameObject messObj = Instantiate(messPrefab, spawnPos, correctRotation);
             
             Debug.Log($"Spawned mess: {messPrefab.name} at {spawnPos}");
