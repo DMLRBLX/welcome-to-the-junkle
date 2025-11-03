@@ -8,14 +8,14 @@ public class MessObject : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private KeyCode interactKey = KeyCode.E; 
     [SerializeField] private float interactRange = 2f;
-    [Tooltip("Optional: assign an Input Action (new Input System) for controller input, e.g. PS5 X/Cross button")]
     [SerializeField] private InputActionReference interactAction; 
     private InputAction instantiatedInteractAction;
     
     [Header("Visual Feedback")]
-    [Tooltip("Optional: assign a prefab GameObject for the cleanup effect (bubble prefab). The script will try to find and play a ParticleSystem on the instantiated prefab.")]
     [SerializeField] private GameObject cleanupEffectPrefab;
     [SerializeField] private AudioClip cleanupSound;
+    [Header("Scoring")]
+    [SerializeField] private int pointsValue = 10; // how many team points this mess gives when cleaned
     [SerializeField] private Canvas interactPrompt; // Optional UI prompt
     
     private bool isBeingCleaned = false;
@@ -177,25 +177,18 @@ public class MessObject : MonoBehaviour
         Debug.Log($"{gameObject.name} has been cleaned up!");
         
        
-        
-        // Award points or trigger cleanup event
+    
         OnMessCleaned();
         
-        // Destroy the mess object
         Destroy(gameObject);
     }
     
     private void OnMessCleaned()
     {
-        // - Award points to player
-        // - Update game manager
- 
-        
-        // Example: Find game manager and notify
-        GameObject gameManager = GameObject.Find("GameManager");
-        if (gameManager != null)
+      
+        if (GameManager.Instance != null)
         {
-            // gameManager.SendMessage("OnMessCleaned", SendMessageOptions.DontRequireReceiver);
+            GameManager.Instance.AddPoints(pointsValue);
         }
     }
     

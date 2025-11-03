@@ -33,7 +33,18 @@ public class TimeController : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        StartCoroutine(HideCountdownAfterDelay(0f));
+
         StartCoroutine(MatchTime());
+    }
+
+    private IEnumerator HideCountdownAfterDelay(float delay)
+    {
+        if (countdownText == null)
+            yield break;
+
+        yield return new WaitForSeconds(delay);
+        countdownText.gameObject.SetActive(false);
     }
 
     IEnumerator MatchTime()
@@ -49,6 +60,10 @@ public class TimeController : MonoBehaviour
         }
 
         matchTimeText.text = "";
-        countdownText.text = endMatchMessage;
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(true);
+            countdownText.text = endMatchMessage;
+        }
     }
 }
