@@ -37,102 +37,106 @@ public class MessObject : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (interactAction != null && interactAction.action != null)
-        {
-            instantiatedInteractAction = interactAction.action;
-            instantiatedInteractAction.started += OnInteractStarted;
-            instantiatedInteractAction.Enable();
-        }
-    }
+    // private void OnEnable()
+    // {
+    //     if (interactAction != null && interactAction.action != null)
+    //     {
+    //         instantiatedInteractAction = interactAction.action;
+    //         instantiatedInteractAction.started += OnInteractStarted;
+    //         instantiatedInteractAction.Enable();
+    //     }
+    // }
 
-    private void OnDisable()
-    {
-        if (instantiatedInteractAction != null)
-        {
-            instantiatedInteractAction.started -= OnInteractStarted;
-            instantiatedInteractAction.Disable();
-            instantiatedInteractAction = null;
-        }
-    }
+    // private void OnDisable()
+    // {
+    //     if (instantiatedInteractAction != null)
+    //     {
+    //         instantiatedInteractAction.started -= OnInteractStarted;
+    //         instantiatedInteractAction.Disable();
+    //         instantiatedInteractAction = null;
+    //     }
+    // }
 
-    private void OnInteractStarted(InputAction.CallbackContext ctx)
-    {
-  
-        if (!playerInRange && currentPlayer == null)
-        {
-            TryFindPlayerNearby();
-        }
+    // private void OnInteractStarted(InputAction.CallbackContext ctx)
+    // {
+    //     HandleCleanup();
+    // }
+    
+    // public void HandleCleanup()
+    // {
+    //     if (!playerInRange && currentPlayer == null)
+    //     {
+    //         TryFindPlayerNearby();
+    //     }
 
-        if (playerInRange && !isBeingCleaned)
-        {
-            StartCleanup();
-        }
-    }
+    //     if (playerInRange && !isBeingCleaned)
+    //     {
+    //         StartCleanup();
+    //     }
+    // }
     
-    private void Update()
-    {
-        if (interactAction == null || interactAction.action == null)
-        {
-            return;
-        }
+    // private void Update()
+    // {
+    //     if (interactAction == null || interactAction.action == null)
+    //     {
+    //         return;
+    //     }
 
-        if (currentPlayer != null)
-        {
-            float distance = Vector3.Distance(transform.position, currentPlayer.transform.position);
-            if (distance > interactRange)
-            {
-                OnPlayerLeft();
-            }
-        }
-    }
+    //     if (currentPlayer != null)
+    //     {
+    //         float distance = Vector3.Distance(transform.position, currentPlayer.transform.position);
+    //         if (distance > interactRange)
+    //         {
+    //             OnPlayerLeft();
+    //         }
+    //     }
+    // }
     
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            OnPlayerEntered(other.gameObject);
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag(playerTag))
+    //     {
+    //         OnPlayerEntered(other.gameObject);
+    //     }
+    // }
     
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(playerTag) && other.gameObject == currentPlayer)
-        {
-            OnPlayerLeft();
-        }
-    }
+    // private void OnTriggerExit(Collider other)
+    // {
+    //     if (other.CompareTag(playerTag) && other.gameObject == currentPlayer)
+    //     {
+    //         OnPlayerLeft();
+    //     }
+    // }
     
-    private void OnPlayerEntered(GameObject player)
-    {
-        if (isBeingCleaned) return;
+    // private void OnPlayerEntered(GameObject player)
+    // {
+    //     if (isBeingCleaned) return;
         
-        playerInRange = true;
-        currentPlayer = player;
+    //     playerInRange = true;
+    //     currentPlayer = player;
         
-        // Show interact prompt
-        if (interactPrompt != null)
-        {
-            interactPrompt.gameObject.SetActive(true);
-        }
+    //     // Show interact prompt
+    //     if (interactPrompt != null)
+    //     {
+    //         interactPrompt.gameObject.SetActive(true);
+    //     }
         
-        Debug.Log($"Press {interactKey} to clean up {gameObject.name}");
-    }
+    //     Debug.Log($"Press {interactKey} to clean up {gameObject.name}");
+    // }
     
-    private void OnPlayerLeft()
-    {
-        playerInRange = false;
-        currentPlayer = null;
+    // private void OnPlayerLeft()
+    // {
+    //     playerInRange = false;
+    //     currentPlayer = null;
         
-        // Hide interact prompt
-        if (interactPrompt != null)
-        {
-            interactPrompt.gameObject.SetActive(false);
-        }
-    }
+    //     // Hide interact prompt
+    //     if (interactPrompt != null)
+    //     {
+    //         interactPrompt.gameObject.SetActive(false);
+    //     }
+    // }
     
-    private void StartCleanup()
+    public void StartCleanup()
     {
         if (isBeingCleaned) return;
         
@@ -159,18 +163,18 @@ public class MessObject : MonoBehaviour
         }
     }
 
-    private void TryFindPlayerNearby()
-    {
-        Collider[] cols = Physics.OverlapSphere(transform.position, interactRange);
-        foreach (var c in cols)
-        {
-            if (c.CompareTag(playerTag))
-            {
-                OnPlayerEntered(c.gameObject);
-                return;
-            }
-        }
-    }
+    // private void TryFindPlayerNearby()
+    // {
+    //     Collider[] cols = Physics.OverlapSphere(transform.position, interactRange);
+    //     foreach (var c in cols)
+    //     {
+    //         if (c.CompareTag(playerTag))
+    //         {
+    //             OnPlayerEntered(c.gameObject);
+    //             return;
+    //         }
+    //     }
+    // }
     
     private void FinishCleanup()
     {

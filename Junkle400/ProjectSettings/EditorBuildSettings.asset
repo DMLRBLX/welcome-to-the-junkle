@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/title.unity
     guid: 9a0d5c3af0e012341b9deaccf7beff59
   - enabled: 1
-    path: Assets/Scenes/AnimalsTest.unity
-    guid: e4aba7b7a2335b842b497cf67a024704
+    path: Assets/Scenes/AnimalsTest new.unity
+    guid: 735ed92793fa6674cb2248d1afcc2ebb
   - enabled: 1
     path: Assets/Scenes/howtoPlay.unity
     guid: 4aa9ddd25b80f63449b2dc1d47d68a91

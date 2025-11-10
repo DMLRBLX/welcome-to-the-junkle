@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     CinemachineCore.AxisInputDelegate previousCinemachineGetAxis = null;
     bool cinematineInputOverridden = false;
 
+    [Header("Cleanup")]
+    [SerializeField] float cleanupRange = 2f;
+    [SerializeField] LayerMask messLayer;
+
     [Header("References")]
     [SerializeField] Transform cameraTransform;
     [SerializeField] CinemachineInputAxisController ciac;
@@ -82,6 +86,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void CleanupInput(InputAction.CallbackContext context)
+    {
+        HandleCleanup();
+    }
+
     public void Jump()
     {
         if (IsGrounded())
@@ -133,6 +142,28 @@ public class PlayerController : MonoBehaviour
         cc.Move(total * Time.deltaTime);
     }
 
+    public void HandleCleanup()
+    {
+        Collider[] messes = GetMesses();
+
+        if (messes.Length == 0)
+            return;
+
+        foreach (Collider mess in messes)
+        {
+            MessObject messObject = mess.GetComponent<MessObject>();
+            if (messObject != null)
+            {
+                messObject.StartCleanup();
+            }
+        }
+    }
+
+    Collider[] GetMesses()
+    {
+        return Physics.OverlapSphere(transform.position, 2f, messLayer);
+    }
+    
     // Ground detection using Physics.CheckSphere. Returns true when the sphere overlaps any collider on groundLayer.
     public bool IsGrounded()
     {

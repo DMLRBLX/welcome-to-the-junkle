@@ -30,6 +30,8 @@ public class ArduinoReceiver : MonoBehaviour
         sp.ReadTimeout = 1;
     }
 
+    bool checkedTime = true;
+    float cleanTime;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -50,8 +52,35 @@ public class ArduinoReceiver : MonoBehaviour
 
             }
         }
+
+
+        if (clean)
+        {
+            if (!checkedTime)
+                cleanTime = Time.time;
+
+            checkedTime = true;
+            playerController.HandleCleanup();
+        }
+        else
+        {
+            if (checkedTime)
+            {
+                if (Time.time - cleanTime < 1.5f)
+                {
+                    playerController.HandleCleanup();
+                }
+                else
+                {
+                    // TODO: Herd!
+                }
+            }
+                
+            checkedTime = false;
+        }
     }
 
+    bool clean;
     private void GetInputData(string input)
     {
         string[] input_info = input.Split(";");
@@ -62,6 +91,8 @@ public class ArduinoReceiver : MonoBehaviour
         bool jump = int.Parse(input_info[2]) == 0 ? true : false;
         float cX = float.Parse(input_info[3]);
         float cY = float.Parse(input_info[4]);
+        clean = int.Parse(input_info[5]) == 1 ? true : false;
+
 
         // print(playerController.moveInput);
         playerController.moveInput = new Vector3(mX, mY, 0f);

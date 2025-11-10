@@ -68,18 +68,42 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5824510187379060028, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -1990968323811559735, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8ed4e01f046de354d8759f61b9f96f50, type: 2}
+    - target: {fileID: -391268320553695201, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
       propertyPath: m_Name
       value: Mess
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365132098506396400, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3219882101630006985, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8ed4e01f046de354d8759f61b9f96f50, type: 2}
+    - target: {fileID: 3735102090226358198, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7202271454713460447, guid: faecf4635f83d9c49a35bc8e81546c00, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -194,4 +218,5 @@ MonoBehaviour:
   interactAction: {fileID: 7943617101843388942, guid: e712b741a329662499c67b0590477437, type: 3}
   cleanupEffectPrefab: {fileID: 8294424712552400615, guid: e5bcb01fb78b70146919003c9442cac9, type: 3}
   cleanupSound: {fileID: 8300000, guid: 6838bfceb00583c4a96ca3bf542dc6f4, type: 3}
+  pointsValue: 10
   interactPrompt: {fileID: 0}
