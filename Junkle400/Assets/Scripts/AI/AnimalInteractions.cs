@@ -58,6 +58,12 @@ public class AnimalInteractions : MonoBehaviour
     {
         Debug.Log($"{gameObject.name} froze the player for {freezePlayerDuration} seconds!");
         
+        // Deduct team points when the player is frozen
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddPoints(-50);
+        }
+        
         // Try to find common player controller components and disable them
         MonoBehaviour[] playerComponents = player.GetComponents<MonoBehaviour>();
         
