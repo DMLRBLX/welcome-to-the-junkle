@@ -17,6 +17,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Arduino Test.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/winScreen.unity
+    guid: 0c389a54deacc9d4294c324414526cda
+  - enabled: 1
+    path: Assets/Scenes/losescreen.unity
+    guid: 2c1440919cfceca48b5bbc70c894ce83
+  - enabled: 1
+    path: Assets/Scenes/LevelTwo.unity
+    guid: 20928f1ffc8da4d41af2dd23aa605e95
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

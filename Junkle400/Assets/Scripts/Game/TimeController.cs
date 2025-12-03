@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 public class TimeController : MonoBehaviour
@@ -13,12 +14,20 @@ public class TimeController : MonoBehaviour
     [SerializeField] int matchTimeMinutes = 5;
     [SerializeField] int matchTimeSeconds = 0;
 
-    [Header("Countdown")]
     [SerializeField] TextMeshProUGUI countdownText;
     [SerializeField] string countdownMessage;
     [SerializeField] string countdownNumberReplacement;
     [SerializeField] string endMatchMessage;
     [SerializeField] int countdown;
+
+    [Tooltip("Name of the scene to load when the team reaches or exceeds the target points")]
+    [SerializeField] private string winSceneName = "winScreen";
+    [Tooltip("Name of the scene to load when the team fails to reach the target points")]
+    [SerializeField] private string loseSceneName = "loseScreen";
+    [SerializeField] private float endMessageDisplayDelay = 3f;
+    [SerializeField] private int winPointsThreshold = 200;
+    [SerializeField] private string nextLevelName = "LevelTwo";
+    [SerializeField] private bool isFinalLevel = false;
 
     void Start()
     {
@@ -64,6 +73,40 @@ public class TimeController : MonoBehaviour
         {
             countdownText.gameObject.SetActive(true);
             countdownText.text = endMatchMessage;
+        }
+
+        StartCoroutine(LoadEndSceneAfterDelay(endMessageDisplayDelay));
+    }
+
+    private IEnumerator LoadEndSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        int points = 0;
+        if (GameManager.Instance != null)
+        {
+            points = GameManager.Instance.GetTotalPoints();
+        }
+
+        if (points >= winPointsThreshold)
+        {
+            if (isFinalLevel)
+            {
+                if (!string.IsNullOrEmpty(winSceneName))
+                    SceneManager.LoadScene(winSceneName);
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(nextLevelName))
+                    SceneManager.LoadScene(nextLevelName);
+                else if (!string.IsNullOrEmpty(winSceneName))
+                    SceneManager.LoadScene(winSceneName);
+            }
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(loseSceneName))
+                SceneManager.LoadScene(loseSceneName);
         }
     }
 }
