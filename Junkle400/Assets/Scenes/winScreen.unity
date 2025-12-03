@@ -236,8 +236,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 86.29, y: 28.8}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 362.1, y: 136.5}
+  m_SizeDelta: {x: 300, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036222267
 MonoBehaviour:
@@ -505,8 +505,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 80, y: 15}
-  m_SizeDelta: {x: 197.92, y: 100}
+  m_AnchoredPosition: {x: 147.4, y: 34.7}
+  m_SizeDelta: {x: 361.9, y: 250.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1640157177
 MonoBehaviour:
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: d71f30a388ab95646aa7d29dc2920bb6, type: 3}
+  m_Texture: {fileID: 2800000, guid: 6a10b2dcab78a0b4fb69672e84015b71, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -896,7 +896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: title screen
+  m_text: Play Again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4d363cf7dc5ea743bb49da7820be237, type: 2}
   m_sharedMaterial: {fileID: -1436671544545129137, guid: f4d363cf7dc5ea743bb49da7820be237, type: 2}
