@@ -2022,6 +2022,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1837727179}
+    - targetCorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1837727180}
   m_SourcePrefab: {fileID: 100100000, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
 --- !u!1001 &485349867
 PrefabInstance:
@@ -7767,8 +7770,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.55
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7812,7 +7815,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -7852,6 +7855,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1796268572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796268565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb74e6ded7a7be4884af4f0d18ec2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1796268571}
+  soundClips:
+  - {fileID: 8300000, guid: 079018dd7b783e84bacabf344859018c, type: 3}
+  - {fileID: 8300000, guid: af383de02459f7b40bcac75b5eb5221e, type: 3}
+  - {fileID: 8300000, guid: 0b6e94453ba86434dbae5c87d14f39e0, type: 3}
+  minTime: 3
+  maxTime: 30
 --- !u!1 &1808144676 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8294424712552400615, guid: e5bcb01fb78b70146919003c9442cac9, type: 3}
@@ -8056,7 +8078,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.58
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8100,7 +8122,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -8140,6 +8162,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1837727180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837727161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb74e6ded7a7be4884af4f0d18ec2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1837727179}
+  soundClips:
+  - {fileID: 8300000, guid: 079018dd7b783e84bacabf344859018c, type: 3}
+  - {fileID: 8300000, guid: af383de02459f7b40bcac75b5eb5221e, type: 3}
+  - {fileID: 8300000, guid: 0b6e94453ba86434dbae5c87d14f39e0, type: 3}
+  minTime: 3
+  maxTime: 30
 --- !u!1 &1851859812
 GameObject:
   m_ObjectHideFlags: 0
@@ -8180,6 +8221,10 @@ MonoBehaviour:
   downwardForce: -1
   rotationSmoothTime: 0.1
   jumpForce: 2
+  cleanupRange: 2
+  messLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cameraTransform: {fileID: 522855905}
   ciac: {fileID: 0}
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
@@ -9346,6 +9391,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1796268571}
+    - targetCorrespondingSourceObject: {fileID: 5883155896844355918, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1796268572}
   m_SourcePrefab: {fileID: 100100000, guid: 8741cd6c8b9fc3947999191d0c381f50, type: 3}
 --- !u!1001 &2055521417
 PrefabInstance:
@@ -9992,6 +10040,10 @@ MonoBehaviour:
   downwardForce: -1
   rotationSmoothTime: 0.1
   jumpForce: 2
+  cleanupRange: 2
+  messLayer:
+    serializedVersion: 2
+    m_Bits: 0
   cameraTransform: {fileID: 1899744716}
   ciac: {fileID: 0}
   groundCheckOffset: {x: 0, y: -0.9, z: 0}
