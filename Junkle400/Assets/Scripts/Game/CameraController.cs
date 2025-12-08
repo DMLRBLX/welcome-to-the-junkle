@@ -20,55 +20,55 @@ public class CameraController : MonoBehaviour
     public bool useArduinoInput = false;
     public UnityEngine.InputSystem.InputActionReference lookAction;
 
-    Vector2 currentLook = Vector2.zero; // x = yaw, y = pitch
-    Vector2 lookVelocity = Vector2.zero;
-
-    // External input from Arduino
-    Vector2 arduinoLook = Vector2.zero;
+    // Target and smoothed angles (degrees)
+    float targetYaw;
+    float targetPitch;
+    float currentYaw;
+    float currentPitch;
+    float yawVelocity;   // for SmoothDampAngle
+    float pitchVelocity; // for SmoothDampAngle
 
     void Start()
     {
         // Initialize with current rotation
-        currentLook.x = transform.eulerAngles.y;
-        currentLook.y = transform.eulerAngles.x;
+        currentYaw = transform.eulerAngles.y;
+        currentPitch = transform.eulerAngles.x;
+        targetYaw = currentYaw;
+        targetPitch = currentPitch;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // Poll the look action so sticks produce continuous input while held
         if (!useArduinoInput && lookAction != null && lookAction.action != null && lookAction.action.enabled)
         {
             Vector2 pv = lookAction.action.ReadValue<Vector2>();
             // Treat polled input as per-second input (sticks), so multiply by deltaTime
-            currentLook.x += pv.x * sensitivity * Time.deltaTime;
-            currentLook.y += pv.y * sensitivity * Time.deltaTime * -1f; // invert Y
+            targetYaw += pv.x * sensitivity * Time.deltaTime;
+            targetPitch += pv.y * sensitivity * Time.deltaTime * -1f; // invert Y
         }
+    }
 
-        Vector2 desiredLook = currentLook;
-        if (useArduinoInput)
-            desiredLook = arduinoLook;
+    void LateUpdate()
+    {
+        // Clamp target pitch first
+        targetPitch = Mathf.Clamp(targetPitch, minPitch, maxPitch);
 
-        // Smooth toward desired look
-        Vector2 smoothed = Vector2.SmoothDamp(currentLook, desiredLook, ref lookVelocity, smoothing);
-        currentLook = smoothed;
-
-        // currentLook stores angles (degrees). Inputs update these angles in OnLook/SetArduinoLook.
-        float yaw = currentLook.x;
-        float pitch = currentLook.y;
-
-        // Clamp pitch
-        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+        // Smooth toward target angles using angle-aware damping
+        currentYaw = Mathf.SmoothDampAngle(currentYaw, targetYaw, ref yawVelocity, smoothing);
+        currentPitch = Mathf.SmoothDampAngle(currentPitch, targetPitch, ref pitchVelocity, smoothing);
+        currentPitch = Mathf.Clamp(currentPitch, minPitch, maxPitch);
 
         // Apply yaw to player target if requested
         if (target != null && rotateTargetYaw)
         {
             Vector3 tEuler = target.eulerAngles;
-            tEuler.y = yaw;
+            tEuler.y = currentYaw;
             target.eulerAngles = tEuler;
         }
 
         // Set camera rotation around head
-        Quaternion rot = Quaternion.Euler(pitch, yaw, 0f);
+        Quaternion rot = Quaternion.Euler(currentPitch, currentYaw, 0f);
         Vector3 headPos = (target != null) ? target.position + headOffset : headOffset;
         transform.SetPositionAndRotation(headPos, rot);
     }
@@ -83,9 +83,8 @@ public class CameraController : MonoBehaviour
             Vector2 v = context.ReadValue<Vector2>();
             bool isMouse = context.control != null && context.control.device is UnityEngine.InputSystem.Mouse;
             float dt = isMouse ? 1f : Time.deltaTime;
-            // Y is typically inverted for look controls (push up = look up), invert if needed
-            currentLook.x += v.x * sensitivity * dt;
-            currentLook.y += v.y * sensitivity * dt * -1f;
+            targetYaw += v.x * sensitivity * dt;
+            targetPitch += v.y * sensitivity * dt * -1f; // invert Y
         }
     }
 
@@ -93,10 +92,9 @@ public class CameraController : MonoBehaviour
     // Expect values in -1..1 range; multiply in caller if needed.
     public void SetArduinoLook(Vector2 v)
     {
-        // Treat Arduino input as deltas. Multiply by sensitivity (and optionally by fixed delta time if you
-        // want frame-rate independence). Here we assume v is in -1..1 representing a per-frame delta.
-        currentLook.x += v.x * sensitivity;
-        currentLook.y += v.y * sensitivity * -1f; // invert Y
-        arduinoLook = currentLook;
+        // Treat Arduino input as deltas in -1..1 and apply sensitivity.
+        // Update the target angles; smoothing is applied in LateUpdate.
+        targetYaw += v.x * sensitivity;
+        targetPitch += v.y * sensitivity * -1f; // invert Y
     }
 }
