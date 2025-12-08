@@ -121,7 +121,7 @@ public class MessObject : MonoBehaviour
     //         interactPrompt.gameObject.SetActive(true);
     //     }
         
-    //     Debug.Log($"Press {interactKey} to clean up {gameObject.name}");
+    //     //Debug.Log($"Press {interactKey} to clean up {gameObject.name}");
     // }
     
     // private void OnPlayerLeft()
@@ -142,7 +142,7 @@ public class MessObject : MonoBehaviour
         
         isBeingCleaned = true;
         
-        Debug.Log($"Cleaning up {gameObject.name}...");
+        //Debug.Log($"Cleaning up {gameObject.name}...");
         
         if (interactPrompt != null)
         {
@@ -178,7 +178,7 @@ public class MessObject : MonoBehaviour
     
     private void FinishCleanup()
     {
-        Debug.Log($"{gameObject.name} has been cleaned up!");
+        //Debug.Log($"{gameObject.name} has been cleaned up!");
         
        
     
@@ -204,7 +204,7 @@ public class MessObject : MonoBehaviour
         Destroy(gameObject);
     }
     
-    // Debug visualization
+    // //Debug visualization
     private void OnDrawGizmosSelected()
     {
         // Show interact range

@@ -40,7 +40,7 @@ public class SimpleAnimalAI : MonoBehaviour
         MakingMess
     }
     
-    [Header("Debug")]
+    [Header("//Debug")]
     [SerializeField] private AnimalState currentState = AnimalState.Idle;
     
     public AnimalState CurrentState => currentState;
@@ -173,7 +173,7 @@ public class SimpleAnimalAI : MonoBehaviour
     
     private void CauseMess()
     {
-        Debug.Log($"{gameObject.name} is causing a mess!");
+        //Debug.Log($"{gameObject.name} is causing a mess!");
         
         SpawnMessObjects();
         
@@ -197,7 +197,7 @@ public class SimpleAnimalAI : MonoBehaviour
     {
         if (messPrefabs == null || messPrefabs.Length == 0)
         {
-            Debug.LogWarning($"{gameObject.name} tried to make mess but no mess prefabs assigned!");
+            //Debug.LogWarning($"{gameObject.name} tried to make mess but no mess prefabs assigned!");
             return;
         }
         
@@ -223,7 +223,7 @@ public class SimpleAnimalAI : MonoBehaviour
             Quaternion correctRotation = Quaternion.Euler(0, prefabRotation.eulerAngles.y, prefabRotation.eulerAngles.z);
             GameObject messObj = Instantiate(messPrefab, spawnPos, correctRotation);
             
-            Debug.Log($"Spawned mess: {messPrefab.name} at {spawnPos}");
+            //Debug.Log($"Spawned mess: {messPrefab.name} at {spawnPos}");
         }
     }
     
@@ -246,7 +246,7 @@ public class SimpleAnimalAI : MonoBehaviour
         currentState = AnimalState.Idle;
     }
     
-    // Debug visualization
+    // //Debug visualization
     private void OnDrawGizmosSelected()
     {
         // Show wander radius

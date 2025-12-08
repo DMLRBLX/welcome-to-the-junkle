@@ -5,7 +5,7 @@ public class AnimalInteractions : MonoBehaviour
 {
     [Header("Player Interaction")]
     [SerializeField] private float freezePlayerDuration = 5f;
-    [SerializeField] private LayerMask playerLayer = 1;
+    [SerializeField] private LayerMask playerLayer;
     
     [Header("Feeding & Herding")]
     [SerializeField] private float herdingDuration = 5f;
