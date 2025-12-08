@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627e73d7c0d30004d95192a711c0d46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  comPort: COM6
+  comPort: AUTO
   playerController: {fileID: 0}
   cameraController: {fileID: 0}
   herdingController: {fileID: 3652087180862734619}
@@ -104,13 +104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   matchTimeText: {fileID: 0}
-  matchTimeMessage: 'Match time: [m]:[s]'
+  matchTimeMessage: 'Time left: [m]:[s]'
   matchTimeMinutesReplacement: '[m]'
   matchTimeSecondsReplacement: '[s]'
   matchTimeMinutes: 0
-  matchTimeSeconds: 30
+  matchTimeSeconds: 60
   countdownText: {fileID: 0}
-  countdownMessage: Match starts in [s]...
+  countdownMessage: '| Match starts in [s]... |'
+  countdownEnded: '| CLEAN! |'
   countdownNumberReplacement: '[s]'
   endMatchMessage: MATCH OVER!
   countdown: 5

@@ -16,6 +16,7 @@ public class TimeController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI countdownText;
     [SerializeField] string countdownMessage;
+    [SerializeField] string countdownEnded;
     [SerializeField] string countdownNumberReplacement;
     [SerializeField] string endMatchMessage;
     [SerializeField] int countdown;
@@ -42,7 +43,10 @@ public class TimeController : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        StartCoroutine(HideCountdownAfterDelay(0f));
+        if (!string.IsNullOrEmpty(countdownEnded))
+            countdownText.text = countdownEnded;
+        else
+            StartCoroutine(HideCountdownAfterDelay(1f));
 
         StartCoroutine(MatchTime());
     }
