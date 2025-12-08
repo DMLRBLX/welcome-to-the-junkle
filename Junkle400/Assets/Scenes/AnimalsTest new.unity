@@ -11526,16 +11526,45 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 3812e2e2b1b9dbc439ac8b610134c8a6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 668809a4af5581f449f3463f03eaec3a, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3812e2e2b1b9dbc439ac8b610134c8a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1819675969}
   m_SourcePrefab: {fileID: 100100000, guid: 3812e2e2b1b9dbc439ac8b610134c8a6, type: 3}
 --- !u!4 &1819675967 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3812e2e2b1b9dbc439ac8b610134c8a6, type: 3}
   m_PrefabInstance: {fileID: 1819675966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1819675968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3812e2e2b1b9dbc439ac8b610134c8a6, type: 3}
+  m_PrefabInstance: {fileID: 1819675966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1819675969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819675968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddf364ef8841c540992eb56d2466c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveThreshold: 0.1
+  sweepKey: 102
+  sweepJoystickButton: 331
+  jumpKey: 32
+  jumpJoystickButton: 330
 --- !u!1001 &1843624862
 PrefabInstance:
   m_ObjectHideFlags: 0
