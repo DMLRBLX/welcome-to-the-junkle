@@ -3,7 +3,7 @@ using System.IO.Ports;
 
 public class ArduinoReceiver : MonoBehaviour
 {
-    [SerializeField] string comPort;
+    [SerializeField] string comPort = "AUTO"; // Set to "AUTO" or leave empty to auto-detect
 
     [SerializeField] private PlayerController playerController;
     [SerializeField] private CameraController cameraController;
@@ -26,19 +26,83 @@ public class ArduinoReceiver : MonoBehaviour
 
     void Awake()
     {
-        sp = new SerialPort(comPort, 115200, Parity.None, 8, StopBits.One);
+        // Delay creating SerialPort until we know the COM port
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        sp.Open();
+        // Auto-detect COM port if requested
+        if (string.IsNullOrEmpty(comPort) || comPort.Trim().ToUpperInvariant() == "AUTO")
+        {
+            comPort = FindArduinoPort();
+        }
+
+        if (string.IsNullOrEmpty(comPort))
+        {
+            Debug.LogWarning("ArduinoReceiver: No COM port found for Arduino.");
+            return;
+        }
+
+        sp = new SerialPort(comPort, 115200, Parity.None, 8, StopBits.One);
+
+        try
+        {
+            sp.Open();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning($"ArduinoReceiver: Failed to open port {comPort}: {e.Message}");
+            return;
+        }
         /*
             Set the read timeout low so unity doesn't freeze,
             and catch the exception below in update that unity will throw
             when the port isn't open and unity tries to check it
         */
         sp.ReadTimeout = 1;
+    }
+
+    private string FindArduinoPort()
+    {
+        string[] ports = SerialPort.GetPortNames();
+        foreach (var port in ports)
+        {
+            SerialPort testPort = null;
+            try
+            {
+                testPort = new SerialPort(port, 115200, Parity.None, 8, StopBits.One);
+                testPort.ReadTimeout = 200;
+                testPort.Open();
+
+                // Try to read a line that matches our expected Arduino payload
+                // Format: mX;mY;jump;cX;cY;clean_herd
+                string line = testPort.ReadLine();
+                if (!string.IsNullOrEmpty(line))
+                {
+                    var parts = line.Split(';');
+                    if (parts.Length >= 6)
+                    {
+                        // Looks like our Arduino stream; select this port
+                        testPort.Close();
+                        return port;
+                    }
+                }
+            }
+            catch
+            {
+                // Ignore and try next port
+            }
+            finally
+            {
+                if (testPort != null)
+                {
+                    try { if (testPort.IsOpen) testPort.Close(); } catch {}
+                    testPort.Dispose();
+                }
+            }
+        }
+        return null;
     }
 
     // Press/hold timing for clean vs herd
