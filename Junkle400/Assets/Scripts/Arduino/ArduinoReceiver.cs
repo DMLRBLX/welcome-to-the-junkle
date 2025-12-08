@@ -7,9 +7,20 @@ public class ArduinoReceiver : MonoBehaviour
 
     [SerializeField] private PlayerController playerController;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private HerdingController herdingController;
     [SerializeField] private bool forwardToCamera = true;
     [SerializeField] private float potMax = 1023f; // raw max from Arduino
-    [SerializeField] Vector2 offset = new Vector2(0.02f, 0.02f);
+    [SerializeField] Vector2 mThreshold = new Vector2(0.02f, 0.02f);
+    [SerializeField] Vector2 cThreshold = new Vector2(0.02f, 0.02f);
+
+    [SerializeField] private bool flipMoveXY = false;
+    [SerializeField] private bool flipCameraXY = false;
+
+    [SerializeField] private bool invertMoveX = false;
+    [SerializeField] private bool invertMoveY = false;
+    [SerializeField] private bool invertCameraX = false;
+    [SerializeField] private bool invertCameraY = false;
+
     private Vector2 tempVector;
     SerialPort sp;
 
@@ -30,8 +41,10 @@ public class ArduinoReceiver : MonoBehaviour
         sp.ReadTimeout = 1;
     }
 
-    bool checkedTime = true;
-    float cleanTime;
+    // Press/hold timing for clean vs herd
+    private bool cleanHerdHeld = false;
+    private float cleanHerdPressTime = 0f;
+    private const float herdThresholdSeconds = 1.5f;
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -53,46 +66,63 @@ public class ArduinoReceiver : MonoBehaviour
             }
         }
 
-
-        if (clean)
+        // Behavior:
+        // - Short press (< threshold): clean on release
+        // - Long hold (>= threshold): herd immediately when threshold reached
+        if (clean_herd)
         {
-            if (!checkedTime)
-                cleanTime = Time.time;
+            if (!cleanHerdHeld)
+            {
+                cleanHerdHeld = true;
+                cleanHerdPressTime = Time.time;
+            }
 
-            checkedTime = true;
-            playerController.HandleCleanup();
+            float elapsed = Time.time - cleanHerdPressTime;
+            if (elapsed >= herdThresholdSeconds)
+            {
+                // Threshold reached while still held: herd immediately
+                herdingController?.TriggerHerding(playerController);
+                // Prevent repeated triggers by advancing press time
+                cleanHerdPressTime = Time.time; // reset window
+            }
         }
         else
         {
-            if (checkedTime)
+            if (cleanHerdHeld)
             {
-                if (Time.time - cleanTime < 1.5f)
+                float heldDuration = Time.time - cleanHerdPressTime;
+                if (heldDuration < herdThresholdSeconds)
                 {
+                    // Short click: clean on release
                     playerController.HandleCleanup();
                 }
-                else
-                {
-                    // TODO: Herd!
-                }
             }
-                
-            checkedTime = false;
+            cleanHerdHeld = false;
         }
     }
 
-    bool clean;
+    bool clean_herd;
     private void GetInputData(string input)
     {
         string[] input_info = input.Split(";");
         //print(input);
 
-        float mX = float.Parse(input_info[0]) + offset.x;
-        float mY = float.Parse(input_info[1]) + offset.y;
+        float mX = float.Parse(input_info[(flipMoveXY ? 1 : 0)]);
+        float mY = float.Parse(input_info[(flipMoveXY ? 0 : 1)]);
         bool jump = int.Parse(input_info[2]) == 0 ? true : false;
-        float cX = float.Parse(input_info[3]);
-        float cY = float.Parse(input_info[4]);
-        clean = int.Parse(input_info[5]) == 1 ? true : false;
+        float cX = float.Parse(input_info[(flipCameraXY ? 4 : 3)]);
+        float cY = float.Parse(input_info[(flipCameraXY ? 3 : 4)]);
+        clean_herd = int.Parse(input_info[5]) == 0 ? true : false;
 
+        mX = Mathf.Abs(mX) >= mThreshold.x ? mX : 0f;
+        mY = Mathf.Abs(mY) >= mThreshold.y ? mY : 0f;
+        cX = Mathf.Abs(cX) >= cThreshold.x ? cX : 0f;
+        cY = Mathf.Abs(cY) >= cThreshold.y ? cY : 0f;
+
+        if (invertMoveX) mX = -mX;
+        if (invertMoveY) mY = -mY;
+        if (invertCameraX) cX = -cX;
+        if (invertCameraY) cY = -cY;
 
         // print(playerController.moveInput);
         playerController.moveInput = new Vector3(mX, mY, 0f);

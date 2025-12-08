@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform cameraTransform;
     [SerializeField] CinemachineInputAxisController ciac;
+    [SerializeField] HerdingController herdingController;
 
     [Header("Ground Check")]
     [SerializeField] Vector3 groundCheckOffset = new Vector3(0f, -0.9f, 0f);
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         HandleMovement();
+        HandleCleanupHerdingPressHold();
     }
 
     // Event-style callback expected by the new Input System when using the "Send Messages" or
@@ -86,9 +88,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Cleaning/Herding via input timing:
+    // - Short press (< threshold): clean on release
+    // - Long hold (>= threshold): herd immediately when threshold reached
+    private bool cleanupHeld = false;
+    private float cleanupPressTime = 0f;
+    private const float herdHoldThreshold = 1.5f;
+
     public void CleanupInput(InputAction.CallbackContext context)
     {
-        HandleCleanup();
+        if (context.started)
+        {
+            cleanupHeld = true;
+            cleanupPressTime = Time.time;
+        }
+        else if (context.canceled)
+        {
+            if (cleanupHeld)
+            {
+                float heldDuration = Time.time - cleanupPressTime;
+                if (heldDuration < herdHoldThreshold)
+                {
+                    HandleCleanup();
+                }
+            }
+            cleanupHeld = false;
+        }
+    }
+
+    void HandleCleanupHerdingPressHold()
+    {
+        if (!cleanupHeld)
+            return;
+
+        float elapsed = Time.time - cleanupPressTime;
+        if (elapsed >= herdHoldThreshold)
+        {
+            herdingController?.TriggerHerding(this);
+            // Advance press time to avoid re-triggering every frame
+            cleanupPressTime = Time.time;
+        }
     }
 
     public void Jump()

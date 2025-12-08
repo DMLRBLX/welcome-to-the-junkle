@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6418897724330661655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8131933469619735260}
+  - component: {fileID: 6751870933869615639}
+  - component: {fileID: 2029162852358133281}
+  - component: {fileID: 3652087180862734619}
+  - component: {fileID: 6304841381545936762}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8131933469619735260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418897724330661655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6751870933869615639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418897724330661655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3f4dd1ecc71d14cad89c9633e2768f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalPoints: 0
+  scoreText: {fileID: 0}
+--- !u!114 &2029162852358133281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418897724330661655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627e73d7c0d30004d95192a711c0d46f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comPort: COM6
+  playerController: {fileID: 0}
+  cameraController: {fileID: 0}
+  herdingController: {fileID: 3652087180862734619}
+  forwardToCamera: 1
+  potMax: 1023
+  mThreshold: {x: 0.05, y: 0.05}
+  cThreshold: {x: 0.05, y: 0.05}
+  flipMoveXY: 1
+  flipCameraXY: 1
+  invertMoveX: 1
+  invertMoveY: 0
+  invertCameraX: 1
+  invertCameraY: 0
+--- !u!114 &3652087180862734619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418897724330661655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7443beb6235287e42b8f839874057cc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player2
+  playerOverride: {fileID: 0}
+  herdingDuration: 3
+  followDistance: 3
+--- !u!114 &6304841381545936762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6418897724330661655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee1880ee86a08e42aa03657901d7429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchTimeText: {fileID: 0}
+  matchTimeMessage: 'Match time: [m]:[s]'
+  matchTimeMinutesReplacement: '[m]'
+  matchTimeSecondsReplacement: '[s]'
+  matchTimeMinutes: 0
+  matchTimeSeconds: 30
+  countdownText: {fileID: 0}
+  countdownMessage: Match starts in [s]...
+  countdownNumberReplacement: '[s]'
+  endMatchMessage: MATCH OVER!
+  countdown: 5
+  winSceneName: winScreen
+  loseSceneName: loseScreen
+  endMessageDisplayDelay: 3
+  winPointsThreshold: 200
+  nextLevelName: 
+  isFinalLevel: 1

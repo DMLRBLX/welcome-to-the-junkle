@@ -7,17 +7,9 @@ public class HerdingController : MonoBehaviour
     [SerializeField] private float herdingDuration = 3f;
     [SerializeField] private float followDistance = 3f;
 
-    void Update()
+    public void TriggerHerding(PlayerController player = null)
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            TriggerHerding();
-        }
-    }
-
-    public void TriggerHerding()
-    {
-        GameObject player = FindPlayer();
+        //GameObject player = FindPlayer();
         if (player == null)
         {
             Debug.LogWarning("HerdingController: no player found with tag '" + playerTag + "' to herd towards.");
@@ -26,7 +18,7 @@ public class HerdingController : MonoBehaviour
 
         Vector3 followPosition = player.transform.position - player.transform.forward * followDistance;
 
-        SimpleAnimalAI[] animals = FindObjectsOfType<SimpleAnimalAI>();
+        SimpleAnimalAI[] animals = FindObjectsByType<SimpleAnimalAI>(FindObjectsSortMode.None);
         foreach (var animal in animals)
         {
             if (animal != null)
